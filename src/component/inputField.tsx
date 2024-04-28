@@ -14,7 +14,7 @@ const InputField: React.FunctionComponent<InputFieldProps> = ({ type, name, plac
     type={type}
     placeholder={placeholder}
     {...register && register(name, validation)}
-    className="max-sm:mx-0 max-sm:w-[23rem] bg-[#FFFFFF] w-[28.125rem] h-[3.813rem] rounded-xl text-xl p-4"
+    className="max-sm:mx-0 max-sm:w-[23rem] border-2 bg-[#FFFFFF] w-[28.125rem] h-[3.813rem] rounded-xl text-xl p-4"
   />
 );
 

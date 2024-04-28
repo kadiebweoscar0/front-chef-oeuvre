@@ -1,6 +1,6 @@
 
 
-aside nav .active{
+aside nav a.active{
     background-color: white;
     color: black;
 }

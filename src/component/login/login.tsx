@@ -13,19 +13,36 @@ export default function Login() {
             email: data.email,
             mot_de_pass: data.mot_de_pass,
         }
-        console.log(credential);
+        // console.log(credential);
+
+        // try {
+        // const response = await axios.post("http://localhost:3000/login",credential)
+        //     .then((response)=> console.log("login", response.data)
+        //     )
+        //     console.log(response);
+            
+        // } catch (error) {
+        //     console.log(error);
+        // }
+        // reset()
 
         try {
-        const response = await axios.post("http://localhost:3000/login",credential)
-            .then((response)=> console.log("login", response.data)
-            )
-            console.log(response);
-            
+          const response = await axios.post("http://localhost:3000/login",credential);
+    
+          // Si la réponse contient un token, le stocker dans sessionStorage
+          if (response.data.token) {
+            sessionStorage.setItem('token', response.data.token);
+            console.log(response.data.token);
+            console.log('Token stocké avec succès');
+          } else {
+            console.log('Pas de token dans la réponse');
+          }
         } catch (error) {
-            console.log(error);
+          console.error('Erreur lors de la connexion', error);
         }
         reset()
-    }
+      };
+    // }
     
 return (
     <>

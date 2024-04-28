@@ -7,7 +7,7 @@ import Button from "../button";
 export default function Register() {
     const {register, handleSubmit, reset} = useForm();
     const onSubmitForm = async (data: FieldValues)=>{
-        const newCriminal = {
+        const newUSer = {
             nom: data.nom,
             postnom: data.postnom,
             prenom: data.prenom,
@@ -21,7 +21,7 @@ export default function Register() {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/adminRegister",newCriminal)
+            const response = await axios.post("http://localhost:3000/adminRegister",newUSer)
                 .then((response)=> console.log("register", response.data)
                 )
                 console.log(response);
