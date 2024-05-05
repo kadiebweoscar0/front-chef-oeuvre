@@ -77,7 +77,8 @@ console.log(token);
 
   return (
     <>
-    <form onSubmit={handleSubmit(onSubmitForm)} className=" relative w-[77%] left-[23.9rem] mt-56">
+    <form onSubmit={handleSubmit(onSubmitForm)} className=" relative left-[40rem] mt-56 w-[63rem] h-[35rem] flex flex-col bg-[#F5F5F5] py-10 px-10 rounded-3xl justify-center">
+      <div className=" flex justify-center  w-[58rem] h-[25rem] items-center">
        <span>
             <InputField
             type="text"
@@ -108,21 +109,22 @@ console.log(token);
             validation={{ required: true }}
             />
             <InputField
-            type="text"
+            type="file"
             name="photo"
             placeholder="photo"
             register={register}
             validation={{ required: true }}
             />
-             <InputField
+             
+       </span>
+       <span>
+       <InputField
             type="text"
             name="crime"
             placeholder="crime"
             register={register}
             validation={{ required: true }}
             />
-       </span>
-       <span>
             <InputField
             type="text"
             name="sexe"
@@ -150,9 +152,8 @@ console.log(token);
             placeholder="description"
             register={register}
             />
-        
        </span>
-        <input type="checkbox"/>
+      </div>
        <Button className=" max-sm:w-[17rem] bg-[#4361EE] max-sm:mx-0 w-[16.625rem] h-[3.813rem] max-sm:text-xl text-4xl rounded-3xl text-white" textButton="Ajouter"  />
     </form>
     </>

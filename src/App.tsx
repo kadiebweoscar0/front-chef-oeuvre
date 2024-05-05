@@ -8,12 +8,14 @@ import Tableau from './component/dashboard/tableau';
 import CreteAlete from './component/dashboard/creteAlete';
 import Profil from './component/profil/profil';
 import ActiveCompte from './component/dashboard/ActiveCompte';
+import "./App.css"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
         <Route path='/home' element={<Home />} />
         <Route path='/dashboard' element={<DashboardPage />} >
           <Route index element={<Tableau />} />
@@ -22,7 +24,6 @@ function App() {
           <Route path='profil' element={<Profil />} />
           <Route path='activer' element={<ActiveCompte />} />
         </Route>
-        <Route path='/adminRegister' element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -8,10 +8,11 @@ type InputFieldProps = {
   register?: ReturnType<typeof useForm>['register'];
   validation?: any;
   value?: any;
-  onChange?: any
+  onChange?: any;
+  className?: string
 };
 
-const InputField: React.FunctionComponent<InputFieldProps> = ({ type, name, placeholder, register, validation, value, onChange }) => (
+const InputField: React.FunctionComponent<InputFieldProps> = ({ type, name, placeholder, register, validation, value, onChange, className }) => (
   <input
     type={type}
     value={value}

@@ -3,11 +3,11 @@ import Texte from '../texte'
 
 export default function Card(props: {photo: string ,nom: string, postnom: string, prenom: string, pseudo: string, sexe: string, description: string}) {
   return (
-    <div className=' bg-red-700 w-5/12 flex justify-center items-center mb-2'>
-        <span className=' bg-amber-400 w-3/6'>
-            <Image urlImage={props.photo} className='' />
+    <div className=' border w-[100%] flex justify-center items-center mb-2 rounded-2xl'>
+        <span className=' w-3/6 rounded-l-2xl'>
+            <Image urlImage={props.photo} className=' h-[23rem] w-[100%] rounded-l-2xl' />
         </span>
-        <span className=' bg-green-400 w-3/6 text-white'>
+        <span className=' bg-[#4361EE] w-3/6 h-[23rem] text-white text-3xl rounded-r-2xl pl-4 py-4 flex flex-col justify-between'>
             <Texte valueTeste={`Nom:  ${props.nom}`} className='' />
             <Texte valueTeste={`Post-om:  ${props.postnom}`} className='' />
             <Texte valueTeste={`Prenom:  ${props.prenom}`} className='' />

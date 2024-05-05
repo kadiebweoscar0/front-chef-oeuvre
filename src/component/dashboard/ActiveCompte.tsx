@@ -123,6 +123,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+interface userChamp{
+    nom: string,
+    postnom: string,
+    prenom: string,
+    email: string,
+    ID_user: number
+}
+
 export default function ActiveCompte() {
     const [alluser, setAlluser] = useState([]);
     
@@ -148,6 +156,18 @@ export default function ActiveCompte() {
         } catch (error) {
             console.log(error);
         }
+
+        // console.log(filteredUsers);
+       
+            
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const filteredUsers = alluser.filter(user => user.status === 'USER' || user.status === null);
+        // if (filteredUsers.length < 0) {
+        //     console.log("il y a rien");
+        // }
+        console.log(alluser);
+        
+
     };
 
     return (
@@ -171,11 +191,11 @@ export default function ActiveCompte() {
                                 <StyledTableCell align="right">{user.prenom}</StyledTableCell>
                                 <StyledTableCell align="right">{user.email}</StyledTableCell>
                                 <StyledTableCell className=' flex flex-col' align="right">
-                                        <Button
+                                       {!user.Role === "ADMIN" && <Button
                                             className='bg-lime-500 w-20 py-1 text-white rounded-full'
                                             textButton='Activer'
                                             onClick={() => handleActivateAccount(user.ID_user)}
-                                        />
+                                        />}
                                     <br />
                                 </StyledTableCell>
                             </StyledTableRow>

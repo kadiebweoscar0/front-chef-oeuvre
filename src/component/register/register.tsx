@@ -2,12 +2,10 @@ import { FieldValues, useForm } from "react-hook-form";
 import InputField from "../inputField";
 import axios from "axios";
 import Button from "../button";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
 export default function Register() {
   const [isChecked, setIsChecked] = useState(false);
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmitForm = async (data: FieldValues) => {
@@ -34,15 +32,13 @@ export default function Register() {
     reset();
   };
 
-  const handleTogglePassword = () => {
-    setShowPassword(prevState => !prevState);
-  };
+
 
 
   return (
     <>
       <form
-        className=" drop-shadow-2xl w-[63rem] h-[35rem] flex flex-col bg-[#F5F5F5] justify-center px-9 m-auto rounded-3xl"
+        className="registerBg drop-shadow-2xl w-[63rem] h-[35rem] flex flex-col bg-[#F5F5F5] justify-center px-9 m-auto rounded-3xl"
         onSubmit={handleSubmit(onSubmitForm)}
       >
         <div className=" w-[58rem] h-[25rem] flex justify-center">
@@ -123,7 +119,7 @@ export default function Register() {
             <p>j'accepte les conditions et les politiques de confidatialité</p>
           </span>
           <Button
-            className={` ${isChecked? " bg-[#4361EE]": " bg-slate-300"} max-sm:w-[17rem]  max-sm:mx-0 w-[16.625rem] h-[3.813rem] max-sm:text-xl text-3xl mt-5 rounded-3xl text-white`}
+            className={` ${isChecked? " bg-[#4361EE]": " bg-slate-400"} max-sm:w-[17rem]  max-sm:mx-0 w-[16.625rem] h-[3.813rem] max-sm:text-xl text-3xl mt-5 rounded-3xl text-white`}
             textButton="s'enregistrez"
             desibled={!isChecked}
           />
