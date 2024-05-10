@@ -123,80 +123,84 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-interface userChamp{
-    nom: string,
-    postnom: string,
-    prenom: string,
-    email: string,
-    ID_user: number
-}
-
-export default function ActiveCompte() {
-    const [alluser, setAlluser] = useState([]);
-    
+interface User {
+    nom: string;
+    postnom: string;
+    prenom: string;
+    email: string;
+    ID_user: number;
+    Role: string;
+  }
+  
+  const ActiveCompte: React.FC = () => {
+    const [alluser, setAlluser] = useState<User[]>([]);
+  
     useEffect(() => {
-        const fetchCriminal = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/user/getAllUser');
-                setAlluser(response.data)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchCriminal();
-    }, []);
-
-    const handleActivateAccount = async (userId: number) => {
-        console.log(userId);
-        
+      const fetchUsers = async () => {
         try {
-           const response =  await axios.put(`http://localhost:3000/api/user/putRoleUserById/${userId}`, { role: 'ADMIN' });
-            console.log(response.data);
-            
+          const response = await axios.get<User[]>(
+            'http://localhost:3000/api/user/getAllUser'
+          );
+          setAlluser(response.data);
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
-
-        const filteredUsers = alluser.filter(user => user.status === null);
-        console.log(filteredUsers);
-        
-        
-
+      };
+      fetchUsers();
+    }, []);
+  
+    const handleActivateAccount = async (userId: number) => {
+      try {
+        await axios.put(
+          `http://localhost:3000/api/user/putRoleUserById/${userId}`,
+          { role: 'ADMIN' }
+        );
+        const updatedUsers = alluser.map((user) =>
+          user.ID_user === userId ? { ...user, Role: 'ADMIN' } : user
+        );
+        setAlluser(updatedUsers);
+      } catch (error) {
+        console.log(error);
+      }
     };
-
+  
     return (
-        <div className='relative w-[77%] left-[23.9rem] mt-56'>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell>Nom</StyledTableCell>
-                            <StyledTableCell align="right">Post-Nom</StyledTableCell>
-                            <StyledTableCell align="right">Prenom&nbsp;</StyledTableCell>
-                            <StyledTableCell align="right">email&nbsp;</StyledTableCell>
-                            <StyledTableCell align="right">Action&nbsp;</StyledTableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {alluser.map((user) => (
-                            <StyledTableRow key={user.nom}>
-                                <StyledTableCell component="th" scope="user">{user.nom}</StyledTableCell>
-                                <StyledTableCell align="right">{user.postnom}</StyledTableCell>
-                                <StyledTableCell align="right">{user.prenom}</StyledTableCell>
-                                <StyledTableCell align="right">{user.email}</StyledTableCell>
-                                <StyledTableCell className=' flex flex-col' align="right">
-                                       {!user.Role === "ADMIN" && <Button
-                                            className='bg-lime-500 w-20 py-1 text-white rounded-full'
-                                            textButton='Activer'
-                                            onClick={() => handleActivateAccount(user.ID_user)}
-                                        />}
-                                    <br />
-                                </StyledTableCell>
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>
+      <div className="relative w-[77%] left-[23.9rem] mt-56">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell>Nom</StyledTableCell>
+                <StyledTableCell align="right">Post-Nom</StyledTableCell>
+                <StyledTableCell align="right">Prenom</StyledTableCell>
+                <StyledTableCell align="right">Email</StyledTableCell>
+                <StyledTableCell align="right">Action</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {alluser.map((user) => (
+                <StyledTableRow key={user.ID_user}>
+                  <StyledTableCell>{user.nom}</StyledTableCell>
+                  <StyledTableCell align="right">{user.postnom}</StyledTableCell>
+                  <StyledTableCell align="right">{user.prenom}</StyledTableCell>
+                  <StyledTableCell align="right">{user.email}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {!user.Role === 'ADMIN' && (
+                      <Button
+                        className="bg-lime-500 w-20 py-1 text-white rounded-full"
+                        textButton="Activer"
+                        onClick={() => handleActivateAccount(user.ID_user)}
+                      />
+                    )}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     );
-}
+  };
+  
+  export default ActiveCompte;
+  

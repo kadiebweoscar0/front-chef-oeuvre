@@ -1,7 +1,28 @@
+import React from "react";
 
-export default function Button(props: {className: string, textButton: string, onClick?: any, desibled?: boolean}) {
-    return (
-      <button disabled={props.desibled} onClick={props.onClick} type="submit" className={props.className}>{props.textButton}</button>
-    )
-  }
-  
+type ButtonProps = {
+  className: string;
+  textButton: string;
+  onClick?: () => void;
+  disabled?: boolean;
+};
+
+const Button: React.FC<ButtonProps> = ({
+  className,
+  textButton,
+  onClick,
+  disabled,
+}) => {
+  return (
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      type="submit"
+      className={className}
+    >
+      {textButton}
+    </button>
+  );
+};
+
+export default Button;

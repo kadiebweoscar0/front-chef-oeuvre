@@ -1,5 +1,5 @@
-import { useForm } from 'react-hook-form';
 import React from 'react';
+import { useForm, FieldValues } from 'react-hook-form';
 
 type InputFieldProps = {
   type: string;
@@ -8,20 +8,28 @@ type InputFieldProps = {
   register?: ReturnType<typeof useForm>['register'];
   validation?: any;
   value?: any;
-  onChange?: any;
-  className?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 };
 
-const InputField: React.FunctionComponent<InputFieldProps> = ({ type, name, placeholder, register, validation, value, onChange, className }) => (
+const InputField: React.FC<InputFieldProps> = ({
+  type,
+  name,
+  placeholder,
+  register,
+  validation,
+  value,
+  onChange,
+  className,
+}) => (
   <input
     type={type}
     value={value}
     onChange={onChange}
     placeholder={placeholder}
     {...register && register(name, validation)}
-    className="max-sm:mx-0 max-sm:w-[23rem] mb-3 border-2 bg-[#FFFFFF] w-[28.125rem] h-[3.813rem] rounded-xl text-xl p-4"
+    className={className}
   />
 );
 
 export default InputField;
-

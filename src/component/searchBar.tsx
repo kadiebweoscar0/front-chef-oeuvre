@@ -1,29 +1,17 @@
-// import InputField from "./inputField";
+import React from 'react';
 
 type SearchBarProps = {
-
-  onChange?: any;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className: string;
 };
 
- const SearchBar: React.FunctionComponent<SearchBarProps>= ({className, onChange})=>(  
-    <>
-      {/* <InputField type={"text"} onChange={onChange} className={className} placeholder=" Rechercher "/> */}
-      <input
-      className={className}
-        type="text"
-        placeholder=" Rechercher "
-        onChange={onChange}
-    />
-    </>
+const SearchBar: React.FC<SearchBarProps> = ({ className, onChange }) => (
+  <input
+    className={className}
+    type="text"
+    placeholder="Rechercher"
+    onChange={onChange}
+  />
+);
 
-  
- )
-
-export default SearchBar
-
- /* <input
-        type="text"
-        placeholder="Rechercher par nom"
-        onChange={(event) => setSearchTerm(event.target.value)}
-    /> */
+export default SearchBar;

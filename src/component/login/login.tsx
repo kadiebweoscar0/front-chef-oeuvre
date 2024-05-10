@@ -13,23 +13,10 @@ export default function Login() {
             email: data.email,
             mot_de_pass: data.mot_de_pass,
         }
-        // console.log(credential);
-
-        // try {
-        // const response = await axios.post("http://localhost:3000/login",credential)
-        //     .then((response)=> console.log("login", response.data)
-        //     )
-        //     console.log(response);
-            
-        // } catch (error) {
-        //     console.log(error);
-        // }
-        // reset()
 
         try {
           const response = await axios.post("http://localhost:3000/login",credential);
     
-          // Si la réponse contient un token, le stocker dans sessionStorage
           if (response.data.token) {
             sessionStorage.setItem('token', response.data.token);
             console.log(response.data.token);
@@ -52,8 +39,6 @@ return (
         </div>
         <form onSubmit={handleSubmit(onSubmitForm)} className=" max-sm:mx-0 max-sm:bg-white  max-sm:w-[24.333rem] max-sm:px-2 max-sm:m-0 bg-[#F5F5F5] w-[32.75rem] h-[34.5rem] rounded-r-2xl py-28">
             <span className=" max-sm:w-[23rem] flex flex-col gap-6 items-center max-sm:p-4 justify-center mb-12">
-                {/* <input className=" max-sm:mx-0 max-sm:w-[23rem] bg-[#FFFFFF] w-[28.125rem] h-[3.813rem] rounded-xl text-xl p-4" type="email" placeholder="Email" {...register("email", {required: true, pattern: /^[\w.-]+@[\w.-]+\.\w+$/})}/>
-                <input className=" max-sm:mx-0 max-sm:w-[23rem] bg-[#FFFFFF] w-[28.125rem] h-[3.813rem] rounded-xl text-xl p-4" type="password" placeholder="Mot de passe"  {...register("mot_de_pass", {required: true})}/> */}
 
             <InputField
             type="email"

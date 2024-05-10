@@ -1,12 +1,3 @@
-// import Tableau from "./tableau";
-
-// export default function CreteAlete() {
-//   return (
-//     <>
-//        <Tableau />
-//     </>
-//   )
-// }
 
 
 import { styled } from '@mui/material/styles';
