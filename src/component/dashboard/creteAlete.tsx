@@ -1,5 +1,3 @@
-
-
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -26,61 +24,61 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
 
-
+interface Tableau {
+  nom: string;
+  postnom: string;
+  prenom: string;
+  pseudo: string;
+}
 
 export default function Tableau() {
+  const [allCriminal, setAllCriminal] = useState<Tableau[]>([]);
 
-    const [allCriminal, setAllCriminal] = useState([]);
-    useEffect(()=>{
-        const fetchCriminal = async ()=>{
-            try {
-                const response = await axios.get('https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllCriminel');
-                setAllCriminal(response.data)
-                
-                    
-            } catch (error) {
-                console.log(error);
-                
-            }
-        }
-        fetchCriminal()
-    } ,[])
+  useEffect(() => {
+    const fetchCriminal = async () => {
+      try {
+        const response = await axios.get('https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllCriminel');
+        setAllCriminal(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchCriminal();
+  }, []);
 
   return (
-
-    <div className=' relative w-[77%] left-[23.9rem] mt-56'>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Nom</StyledTableCell>
-            <StyledTableCell align="right">Post-Nom</StyledTableCell>
-            <StyledTableCell align="right">Prenom&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Pseudo&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Action&nbsp;</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {allCriminal.map((row) => (
-            <StyledTableRow key={row.nom}>
-              <StyledTableCell  component="th" scope="row">{row.nom}</StyledTableCell>
-              <StyledTableCell align="right">{row.postnom}</StyledTableCell>
-              <StyledTableCell align="right">{row.prenom}</StyledTableCell>
-              <StyledTableCell align="right">{row.pseudo}</StyledTableCell>
-              <StyledTableCell className=' flex flex-col' align="right">
-                <Button className=' bg-lime-500 w-20 py-1 text-white rounded-full' textButton='Alerter' /><br />
+    <div className='relative w-[77%] left-[23.9rem] mt-56'>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Nom</StyledTableCell>
+              <StyledTableCell align="right">Post-Nom</StyledTableCell>
+              <StyledTableCell align="right">Prenom&nbsp;</StyledTableCell>
+              <StyledTableCell align="right">Pseudo&nbsp;</StyledTableCell>
+              <StyledTableCell align="right">Action&nbsp;</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {Array.isArray(allCriminal) && allCriminal.map((row) => (
+              <StyledTableRow key={row.nom}>
+                <StyledTableCell component="th" scope="row">{row.nom}</StyledTableCell>
+                <StyledTableCell align="right">{row.postnom}</StyledTableCell>
+                <StyledTableCell align="right">{row.prenom}</StyledTableCell>
+                <StyledTableCell align="right">{row.pseudo}</StyledTableCell>
+                <StyledTableCell className='flex flex-col' align="right">
+                  <Button className='bg-lime-500 w-20 py-1 text-white rounded-full' textButton='Alerter' /><br />
                 </StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }

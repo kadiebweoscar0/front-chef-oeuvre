@@ -185,7 +185,7 @@ interface User {
                   <StyledTableCell align="right">{user.prenom}</StyledTableCell>
                   <StyledTableCell align="right">{user.email}</StyledTableCell>
                   <StyledTableCell align="right">
-                    {!user.Role === 'ADMIN' && (
+                    {(
                       <Button
                         className="bg-lime-500 w-20 py-1 text-white rounded-full"
                         textButton="Activer"

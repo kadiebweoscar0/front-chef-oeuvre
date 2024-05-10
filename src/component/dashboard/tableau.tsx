@@ -25,21 +25,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
+interface Tableau {
+  nom: string;
+  postnom: string;
+  prenom: string;
+  pseudo: string;
+}
+
 export default function Tableau() {
   const [showForm, setShowForm] = useState(false);
-  
+  const [allCriminal, setAllCriminal] = useState<Tableau[]>([]);
 
   const handleClick = () => {
     setShowForm(!showForm);
   };
 
-  const [allCriminal, setAllCriminal] = useState([]);
   useEffect(() => {
     const fetchCriminal = async () => {
       try {
@@ -47,9 +52,6 @@ export default function Tableau() {
           "https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllCriminel"
         );
         setAllCriminal(response.data);
-        // if (allCriminal) {
-        //     allCriminal.map((item: {[key: string]: any}) => console.log(item))
-        // }
       } catch (error) {
         console.log(error);
       }
@@ -58,8 +60,8 @@ export default function Tableau() {
   }, []);
 
   return (
-    <div className=" relative w-[77%] left-[23.9rem] mt-56">
-      <h1 className=" text-4xl">Liste des criminels enregistrez</h1>
+    <div className="relative w-[77%] left-[23.9rem] mt-56">
+      <h1 className="text-4xl">Liste des criminels enregistrés</h1>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -72,35 +74,35 @@ export default function Tableau() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {allCriminal.map((row) => (
-              <StyledTableRow key={row.nom}>
-                <StyledTableCell component="th" scope="row">
-                  {row.nom}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.postnom}</StyledTableCell>
-                <StyledTableCell align="right">{row.prenom}</StyledTableCell>
-                <StyledTableCell align="right">{row.pseudo}</StyledTableCell>
-                <StyledTableCell className=" flex flex-col" align="right">
-                 
-                  <Button
-                    className=" bg-[#4361EE] w-20 mb-1 py-1 text-white rounded-full"
-                    textButton="Modifer"
-                    onClick={handleClick}
-                  /><br />
-                   <Button
-                    className=" bg-red-700 w-20  py-1 text-white rounded-full"
-                    textButton="Supprimer"
-                  />
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+            {Array.isArray(allCriminal) &&
+              allCriminal.map((row, index) => (
+                <StyledTableRow key={index}>
+                  <StyledTableCell component="th" scope="row">
+                    {row.nom}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.postnom}</StyledTableCell>
+                  <StyledTableCell align="right">{row.prenom}</StyledTableCell>
+                  <StyledTableCell align="right">{row.pseudo}</StyledTableCell>
+                  <StyledTableCell className="flex flex-col" align="right">
+                    <Button
+                      className="bg-[#4361EE] w-20 mb-1 py-1 text-white rounded-full"
+                      textButton="Modifier"
+                      onClick={handleClick}
+                    /><br />
+                    <Button
+                      className="bg-red-700 w-20 py-1 text-white rounded-full"
+                      textButton="Supprimer"
+                    />
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
       {showForm && (
-        <div className="popup z-50 mt-[-110%]  flex flex-col items-center justify-center min-h-screen backdrop-blur-sm bg-white/30">
-          <form className=" flex justify-center  w-[58rem] h-[25rem] items-center" >
-            <span>
+        <div className="popup z-50 mt-[-110%] flex flex-col items-center justify-center min-h-screen backdrop-blur-sm bg-white/30">
+          <form className="flex justify-center w-[58rem] h-[25rem] items-center">
+          <span>
               <InputField
                 type="text"
                 name="nom"
@@ -184,6 +186,3 @@ export default function Tableau() {
     </div>
   );
 }
-
-
-
