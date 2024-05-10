@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 type InputFieldProps = {
   type: string;
@@ -24,7 +24,7 @@ const InputField: React.FC<InputFieldProps> = ({
 }) => (
   <input
     type={type}
-    value={value}
+    value={value || ''}
     onChange={onChange}
     placeholder={placeholder}
     {...register && register(name, validation)}

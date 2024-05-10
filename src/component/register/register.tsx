@@ -32,9 +32,6 @@ export default function Register() {
     reset();
   };
 
-
-
-
   return (
     <>
       <form
@@ -121,7 +118,7 @@ export default function Register() {
           <Button
             className={` ${isChecked? " bg-[#4361EE]": " bg-slate-400"} max-sm:w-[17rem]  max-sm:mx-0 w-[16.625rem] h-[3.813rem] max-sm:text-xl text-3xl mt-5 rounded-3xl text-white`}
             textButton="s'enregistrez"
-            desibled={!isChecked}
+            disabled={!isChecked}
           />
         </div>
       </form>

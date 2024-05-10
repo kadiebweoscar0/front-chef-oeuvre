@@ -5,8 +5,18 @@ import axios from "axios";
 import SearchBar from "../searchBar";
 import Image from "../image";
 
+type Criminal = {
+  photo: string;
+  nom: string;
+  postnom: string;
+  prenom: string;
+  pseudo: string;
+  sexe: string;
+  description: string;
+};
+
 export default function Timeline() {
-  const [allCriminal, setAllCriminal] = useState([]);
+  const [allCriminal, setAllCriminal] = useState<Criminal[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -24,7 +34,7 @@ export default function Timeline() {
   }, []);
 
   const filteredCriminals = allCriminal.filter(
-    (criminal: { [key: string]: any }) =>
+    (criminal: Criminal) =>
       criminal.nom.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
