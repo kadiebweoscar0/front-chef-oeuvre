@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
 export default function Login() {
-    const {register, handleSubmit, reset, formState: {errors} } = useForm();
+    const {register, handleSubmit, reset } = useForm();
     const onSubmitForm = async (data: FieldValues)=>{
         const credential = {
             email: data.email,
@@ -60,7 +60,7 @@ return (
                 <Button className=" max-sm:w-[17rem] bg-[#4361EE] max-sm:mx-0 w-[16.625rem] h-[3.813rem] max-sm:text-xl text-4xl rounded-3xl text-white" textButton="Connexion" />
                 <Image urlImage={imageGoogle} className=" w-16 h-16 rounded-lg" />
             </span>
-            <p className=" max-sm:w-[23rem] max-sm:text-xl max-sm:p-2 max-sm:mx-0 text-2xl ml-8 mt-8">Vous avez pas de compte ? <NavLink className=" text-blue-600" to="#">inscrivez-vous</NavLink></p>
+            <p className=" max-sm:w-[23rem] max-sm:text-xl max-sm:p-2 max-sm:mx-0 text-2xl ml-8 mt-8">Vous avez pas de compte ? <NavLink className=" text-blue-600" to="register">inscrivez-vous</NavLink></p>
         </form>
     </div>
     </>

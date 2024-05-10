@@ -9,7 +9,6 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Button from "../button";
-import { Link } from "react-router-dom";
 import InputField from "../inputField";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -92,8 +91,6 @@ export default function Tableau() {
                     className=" bg-red-700 w-20  py-1 text-white rounded-full"
                     textButton="Supprimer"
                   />
-                  {/* <Link to={'#'} className=' bg-red-700 w-20 mb-1 py-1 text-white rounded-full' >Supprimer</Link><br/>
-                <Link to={'#'} className=' bg-[#4361EE] w-20 py-1 text-white rounded-full' >Modifer</Link> */}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

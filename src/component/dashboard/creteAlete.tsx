@@ -42,9 +42,6 @@ export default function Tableau() {
             try {
                 const response = await axios.get('http://localhost:3000/api/user/getAllCriminel');
                 setAllCriminal(response.data)
-                // if (allCriminal) {
-                //     allCriminal.map((item: {[key: string]: any}) => console.log(item))
-                // }
                 
                     
             } catch (error) {
