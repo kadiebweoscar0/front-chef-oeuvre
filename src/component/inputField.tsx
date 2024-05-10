@@ -12,6 +12,26 @@ type InputFieldProps = {
   className?: string;
 };
 
+// const InputField: React.FC<InputFieldProps> = ({
+//   type,
+//   name,
+//   placeholder,
+//   register,
+//   validation,
+//   value,
+//   onChange,
+//   className,
+// }) => (
+//   <input
+//     type={type}
+//     value={value || ''}
+//     onChange={onChange}
+//     placeholder={placeholder}
+//     {...register && register(name, validation)}
+//     className={className}
+//   />
+// );
+
 const InputField: React.FC<InputFieldProps> = ({
   type,
   name,
@@ -27,9 +47,10 @@ const InputField: React.FC<InputFieldProps> = ({
     value={value || ''}
     onChange={onChange}
     placeholder={placeholder}
-    {...register && register(name, validation)}
+    {...register && name && register(name, validation)} 
     className={className}
   />
 );
+
 
 export default InputField;
