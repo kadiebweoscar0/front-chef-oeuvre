@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 type InputFieldProps = {
   type: string;
-  name?: string;
+  name: string;
   placeholder?: string;
   register?: ReturnType<typeof useForm>['register'];
   validation?: any;
