@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/loginPage'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import LoginPage from './pages/loginPage';
 import RegisterPage from './pages/registerPage';
 import Home from './pages/home';
 import DashboardPage from './pages/dashboardPage';
@@ -10,19 +11,43 @@ import Profil from './component/profil/profil';
 import ActiveCompte from './component/dashboard/ActiveCompte';
 import "./App.css"
 
+
+function AuthHandler({ setIsLoggedIn }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+      navigate('/home');
+    }
+  }, [setIsLoggedIn, navigate]);
+
+  return null;
+}
+
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <BrowserRouter>
+      <AuthHandler setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/dashboard' element={<DashboardPage />} >
+        <Route
+          path="/"
+          element={<LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />}
+        />
+
+        <Route path="/register" element={<RegisterPage />} />
+
+        {isLoggedIn && <Route path="/home" element={<Home />} />}
+
+        <Route path="/dashboard" element={<DashboardPage />}>
           <Route index element={<Tableau />} />
-          <Route path='addCriminal' element={<AddCriminal />} />
-          <Route path='alert' element={<CreteAlete />} />
-          <Route path='profil' element={<Profil />} />
-          <Route path='activer' element={<ActiveCompte />} />
+          <Route path="addCriminal" element={<AddCriminal />} />
+          <Route path="alert" element={<CreteAlete />} />
+          <Route path="profil" element={<Profil />} />
+          <Route path="activer" element={<ActiveCompte />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -30,3 +55,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

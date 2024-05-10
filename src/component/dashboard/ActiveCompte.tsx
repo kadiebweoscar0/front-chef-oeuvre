@@ -157,15 +157,9 @@ export default function ActiveCompte() {
             console.log(error);
         }
 
-        // console.log(filteredUsers);
-       
-            
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const filteredUsers = alluser.filter(user => user.status === 'USER' || user.status === null);
-        // if (filteredUsers.length < 0) {
-        //     console.log("il y a rien");
-        // }
-        console.log(alluser);
+        const filteredUsers = alluser.filter(user => user.status === null);
+        console.log(filteredUsers);
+        
         
 
     };
