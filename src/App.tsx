@@ -11,8 +11,11 @@ import Profil from './component/profil/profil';
 import ActiveCompte from './component/dashboard/ActiveCompte';
 import "./App.css"
 
+type AuthHandlerProps = {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-function AuthHandler({ setIsLoggedIn }) {
+function AuthHandler({ setIsLoggedIn }: AuthHandlerProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,7 +32,6 @@ function AuthHandler({ setIsLoggedIn }) {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-
   return (
     <BrowserRouter>
       <AuthHandler setIsLoggedIn={setIsLoggedIn} />
@@ -38,11 +40,8 @@ function App() {
           path="/"
           element={<LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />}
         />
-
         <Route path="/register" element={<RegisterPage />} />
-
         {isLoggedIn && <Route path="/home" element={<Home />} />}
-
         <Route path="/dashboard" element={<DashboardPage />}>
           <Route index element={<Tableau />} />
           <Route path="addCriminal" element={<AddCriminal />} />
@@ -56,7 +55,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
