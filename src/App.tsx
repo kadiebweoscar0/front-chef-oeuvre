@@ -38,7 +38,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />}
+          element={<LoginPage onLoginSuccess={(): void => setIsLoggedIn(true)} />}
         />
         <Route path="/register" element={<RegisterPage />} />
         {isLoggedIn && <Route path="/home" element={<Home />} />}

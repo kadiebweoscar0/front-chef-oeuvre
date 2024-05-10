@@ -23,7 +23,7 @@ export default function Timeline() {
     const fetchCriminal = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/user/getAllCriminel"
+          "https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllCriminel"
         );
         setAllCriminal(response.data);
       } catch (error) {

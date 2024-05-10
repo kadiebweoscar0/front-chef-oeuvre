@@ -40,7 +40,7 @@ export default function Tableau() {
     useEffect(()=>{
         const fetchCriminal = async ()=>{
             try {
-                const response = await axios.get('http://localhost:3000/api/user/getAllCriminel');
+                const response = await axios.get('https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllCriminel');
                 setAllCriminal(response.data)
                 
                     

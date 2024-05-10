@@ -23,7 +23,7 @@ export default function Register() {
 
     try {
       const response = await axios
-        .post("http://localhost:3000/register", newUSer)
+        .post("https://capstone2-c1-kadiebweoscar0.onrender.com/register", newUSer)
         .then((response) => console.log("register", response.data));
       console.log(response);
     } catch (error) {

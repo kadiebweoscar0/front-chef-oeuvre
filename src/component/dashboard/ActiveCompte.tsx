@@ -139,7 +139,7 @@ interface User {
       const fetchUsers = async () => {
         try {
           const response = await axios.get<User[]>(
-            'http://localhost:3000/api/user/getAllUser'
+            'https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllUser'
           );
           setAlluser(response.data);
         } catch (error) {
@@ -152,7 +152,7 @@ interface User {
     const handleActivateAccount = async (userId: number) => {
       try {
         await axios.put(
-          `http://localhost:3000/api/user/putRoleUserById/${userId}`,
+          `https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/putRoleUserById/${userId}`,
           { role: 'ADMIN' }
         );
         const updatedUsers = alluser.map((user) =>

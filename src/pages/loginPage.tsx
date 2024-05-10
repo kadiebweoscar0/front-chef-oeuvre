@@ -1,9 +1,13 @@
 import Login from "../component/login/login";
 
-export default function LoginPage() {
+type LoginPageProps = {
+  onLoginSuccess: () => void;
+};
+
+export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   return (
-    <div className=" max-sm:m-0">
-        <Login />
+    <div className="max-sm:m-0">
+      <Login onLoginSuccess={onLoginSuccess} />
     </div>
-  )
+  );
 }
