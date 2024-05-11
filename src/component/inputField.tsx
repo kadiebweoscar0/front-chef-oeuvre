@@ -40,15 +40,14 @@ const InputField: React.FC<InputFieldProps> = ({
   validation,
   value,
   onChange,
-  className,
 }) => (
   <input
     type={type}
     value={value || ''}
     onChange={onChange}
     placeholder={placeholder}
-    {...register && name && register(name, validation)} 
-    className={className}
+    {...register && register(name, validation)} 
+    className="max-sm:mx-0 max-sm:w-[23rem] border-2 bg-[#FFFFFF] w-[28.125rem] h-[3.813rem] rounded-xl text-xl p-4"
   />
 );
 
