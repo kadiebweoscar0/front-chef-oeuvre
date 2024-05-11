@@ -22,12 +22,13 @@ function AuthHandler({ setIsLoggedIn }: AuthHandlerProps) {
     const token = sessionStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
-      navigate('/home');
+      navigate('/home'); // Rediriger vers la page d'accueil
     }
   }, [setIsLoggedIn, navigate]);
 
   return null;
 }
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
