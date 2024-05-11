@@ -7,7 +7,6 @@ type InputFieldProps = {
   placeholder?: string;
   register?: ReturnType<typeof useForm>['register'];
   validation?: any;
-  value?: any;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 };
@@ -38,12 +37,10 @@ const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   register,
   validation,
-  value,
   onChange,
 }) => (
   <input
     type={type}
-    value={value || ''}
     onChange={onChange}
     placeholder={placeholder}
     {...register && register(name, validation)} 
