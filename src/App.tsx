@@ -32,6 +32,8 @@ function AuthHandler({ setIsLoggedIn }: AuthHandlerProps) {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  console.log(isLoggedIn);
+  
 
   return (
     <BrowserRouter>
@@ -42,7 +44,7 @@ function App() {
           element={<LoginPage onLoginSuccess={(): void => setIsLoggedIn(true)} />}
         />
         <Route path="/register" element={<RegisterPage />} />
-        {isLoggedIn && <Route path="/home" element={<Home />} />}
+        <Route path="/home" element={<Home />} />
         <Route path="/dashboard" element={<DashboardPage />}>
           <Route index element={<Tableau />} />
           <Route path="addCriminal" element={<AddCriminal />} />
