@@ -20,6 +20,7 @@ export default function Register() {
       email: data.email,
       mot_de_pass: data.mot_de_pass,
     };
+    
 
     try {
       const response = await axios

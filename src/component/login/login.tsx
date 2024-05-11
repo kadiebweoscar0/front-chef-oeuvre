@@ -20,6 +20,8 @@ export default function Login({ onLoginSuccess }: LoginProps) {
           mot_de_pass: data.mot_de_pass,
       }
 
+
+      
       try {
         const response = await axios.post("https://capstone2-c1-kadiebweoscar0.onrender.com/login",credential);
   
