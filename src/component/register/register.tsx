@@ -23,7 +23,10 @@ export default function Register() {
 
     try {
       const response = await axios
-        .post("https://capstone2-c1-kadiebweoscar0.onrender.com/register", newUSer)
+        .post(
+          "https://capstone2-c1-kadiebweoscar0.onrender.com/register",
+          newUSer
+        )
         .then((response) => console.log("register", response.data));
       console.log(response);
     } catch (error) {
@@ -38,8 +41,9 @@ export default function Register() {
         className="registerBg drop-shadow-2xl w-[63rem] h-[35rem] flex flex-col bg-[#F5F5F5] justify-center px-9 m-auto rounded-3xl"
         onSubmit={handleSubmit(onSubmitForm)}
       >
+        //flex justify-center  w-[58rem] h-[25rem] items-center
         <div className=" w-[58rem] h-[25rem] flex justify-center">
-          <span className="">
+          <span className=" ">
             <InputField
               type="text"
               name="nom"
@@ -105,18 +109,22 @@ export default function Register() {
               placeholder="mot de passe"
               register={register}
               validation={{ required: true }}
-              />
+            />
           </span>
         </div>
         <div>
           <span className=" flex gap-2 -mt-6">
-            <input className=" w-5" type="checkbox" 
-            onChange={(e) => setIsChecked(e.target.checked)}
+            <input
+              className=" w-5"
+              type="checkbox"
+              onChange={(e) => setIsChecked(e.target.checked)}
             />
             <p>j'accepte les conditions et les politiques de confidatialité</p>
           </span>
           <Button
-            className={` ${isChecked? " bg-[#4361EE]": " bg-slate-400"} max-sm:w-[17rem]  max-sm:mx-0 w-[16.625rem] h-[3.813rem] max-sm:text-xl text-3xl mt-5 rounded-3xl text-white`}
+            className={` ${
+              isChecked ? " bg-[#4361EE]" : " bg-slate-400"
+            } max-sm:w-[17rem]  max-sm:mx-0 w-[16.625rem] h-[3.813rem] max-sm:text-xl text-3xl mt-5 rounded-3xl text-white`}
             textButton="s'enregistrez"
             disabled={!isChecked}
           />

@@ -47,7 +47,7 @@ export default function Login({ onLoginSuccess }: LoginProps) {
         <form onSubmit={handleSubmit(onSubmitForm)} className="max-sm:mx-0 max-sm:bg-white max-sm:w-[24.333rem] max-sm:px-2 max-sm:m-0 bg-[#F5F5F5] w-[32.75rem] h-[34.5rem] rounded-r-2xl py-28">
           <span className="max-sm:w-[23rem] flex flex-col gap-6 items-center max-sm:p-4 justify-center mb-12">
             <InputField
-              type="email"
+              type="email"  
               placeholder="Email"
               name="email"
               register={register}
