@@ -4,6 +4,7 @@ import Card from "./card";
 import axios from "axios";
 import SearchBar from "../searchBar";
 import Image from "../image";
+import { NavLink } from "react-router-dom";
 
 type Criminal = {
   photo: string;
@@ -45,6 +46,7 @@ export default function Timeline() {
           onChange={(event) => setSearchTerm(event.target.value)}
           className=" w-[60%] px-4 py-4 rounded-3xl drop-shadow-2xl mb-10 ml-72 border"
         />
+        <NavLink to={"/dashboard"} >dashboard</NavLink>
         <Image
           urlImage={"hdjhdck"}
           className=" rounded-full border w-20 h-20"
