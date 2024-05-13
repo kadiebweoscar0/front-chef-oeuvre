@@ -1,27 +1,25 @@
+import { useEffect, useState } from 'react';
 import Button from "../button";
 import InputField from "../inputField";
 import Image from "../image";
 import Texte from "../texte";
 import imageGoogle from '../../../public/image/New Google Favicon Logo PNG Vector (EPS) Free Download.jpeg'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
 
-type LoginProps = {
-  onLoginSuccess: () => void;
-};
 
-export default function Login({ onLoginSuccess }: LoginProps) {
+export default function Login() {
   const {register, handleSubmit, reset } = useForm();
-  
+  const [tokenExists, setTokenExists] = useState(false);
+  const navigate = useNavigate();
+
   const onSubmitForm = async (data: FieldValues)=>{
       const credential = {
           email: data.email,
           mot_de_pass: data.mot_de_pass,
       }
 
-
-      
       try {
         const response = await axios.post("https://capstone2-c1-kadiebweoscar0.onrender.com/login",credential);
   
@@ -29,17 +27,25 @@ export default function Login({ onLoginSuccess }: LoginProps) {
           sessionStorage.setItem('token', response.data.token);
           console.log(response.data.token);
           console.log('Token stocké avec succès');
-          // Appeler la fonction onLoginSuccess lorsque la connexion réussit
-          onLoginSuccess();
+          setTokenExists(true);
         } else {
           console.log('Pas de token dans la réponse');
+          setTokenExists(false);
+          alert('Email ou mot de passe incorrect');
         }
       } catch (error) {
         console.error('Erreur lors de la connexion', error);
       }
       reset()
     };
-    
+
+  useEffect(() => {
+    if (tokenExists) {
+      setTokenExists(true);
+      navigate('/home');
+    }
+  }, [tokenExists, navigate]);
+
   return (
     <>
       <div className="max-sm:w-[24.333rem] max-sm:mx-0 max-sm:px-0 w-[65.5rem] h-[34.5rem] flex m-auto rounded-xl drop-shadow-2xl py-28">
