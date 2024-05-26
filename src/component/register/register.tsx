@@ -23,9 +23,14 @@ export default function Register() {
     
 
     try {
+      // const response = await axios
+      //   .post(
+      //     "https://capstone2-c1-kadiebweoscar0.onrender.com/register",
+      //     newUSer
+      //   )
       const response = await axios
         .post(
-          "https://capstone2-c1-kadiebweoscar0.onrender.com/register",
+          "http://localhost:3000/register",
           newUSer
         )
         .then((response) => console.log("register", response.data));
@@ -42,8 +47,7 @@ export default function Register() {
         className="registerBg drop-shadow-2xl w-[63rem] h-[35rem] flex flex-col bg-[#F5F5F5] justify-center px-9 m-auto rounded-3xl"
         onSubmit={handleSubmit(onSubmitForm)}
       >
-        //flex justify-center  w-[58rem] h-[25rem] items-center
-        <div className=" w-[58rem] h-[25rem] flex justify-center">
+          <div className=" w-[58rem] h-[25rem] flex justify-center">
           <span className=" ">
             <InputField
               type="text"

@@ -5,6 +5,7 @@ import axios from "axios";
 import SearchBar from "../searchBar";
 import Image from "../image";
 import { NavLink } from "react-router-dom";
+import { useContextApp } from "../../assets/contextApp";
 
 type Criminal = {
   photo: string;
@@ -19,6 +20,10 @@ type Criminal = {
 export default function Timeline() {
   const [allCriminal, setAllCriminal] = useState<Criminal[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const {infoUserConnect} = useContextApp()
+  console.log(infoUserConnect);
+  
 
   useEffect(() => {
     const fetchCriminal = async () => {
@@ -40,16 +45,16 @@ export default function Timeline() {
   );
 
   return (
-    <div className=" m-auto w-[80%] py-16 flex flex-col justify-center items-center ">
-      <span className=" w-[100%] flex justify-between px-10">
+    <div className=" m-auto w-[100%] py-16 flex flex-col justify-center items-center">
+      <span className=" w-[100%] flex justify-between items-center">
         <SearchBar
           onChange={(event) => setSearchTerm(event.target.value)}
-          className=" w-[60%] px-4 py-4 rounded-3xl drop-shadow-2xl mb-10 ml-72 border"
+          className=" w-[60%] p-4 rounded-3xl drop-shadow-2xl mb-10 ml-32 border"
         />
-        <NavLink to={"/dashboard"} >dashboard</NavLink>
+       {infoUserConnect?.Role === 'ADMIN' ? <NavLink to={"/dashboard"} >dashboard</NavLink> : null}
         <Image
           urlImage={"hdjhdck"}
-          className=" rounded-full border w-20 h-20"
+          className=" rounded-full border w-20 h-20 mr-10"
         />
       </span>
 

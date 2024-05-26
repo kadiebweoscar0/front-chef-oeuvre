@@ -49,7 +49,8 @@ export default function Tableau() {
     const fetchCriminal = async () => {
       try {
         const response = await axios.get(
-          "https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllCriminel"
+          // "https://capstone2-c1-kadiebweoscar0.onrender.com/api/user/getAllCriminel"
+          "http://localhost:3000/api/user/getAllCriminel"
         );
         setAllCriminal(response.data);
       } catch (error) {
@@ -100,7 +101,7 @@ export default function Tableau() {
         </Table>
       </TableContainer>
       {showForm && (
-        <div className="popup z-50 mt-[-110%] flex flex-col items-center justify-center min-h-screen backdrop-blur-sm bg-white/30">
+        <div className="popup fixed top-0 left-0 w-full h-full bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
           <form className="flex justify-center w-[58rem] h-[25rem] items-center">
           <span>
               <InputField
